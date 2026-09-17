@@ -1,0 +1,25 @@
+# 원본(upstream) 클론 — 참고용, 이 저장소 구성에서 제외
+/upstream/
+
+# 빌드 산출물(바이너리)
+*.exe
+*.app
+*.dmg
+*.zip
+
+# 로컬 도구 설정/내부 지침(앱 코드 아님)
+.claude/
+AGENTS.md
+
+# 세션/임시
+scratchpad/
+*.tmp
+
+# OS/에디터
+.DS_Store
+Thumbs.db
+.vs/
+.idea/
+
+# 프런트/러스트 빌드물은 poketokenbar/.gitignore, src-tauri/.gitignore 가 처리
+# (node_modules, dist, target)
