@@ -134,6 +134,10 @@ impl CompanionStore {
             is_bundled_app,
         };
         s.load();
+        // 언어를 직접 고른 적 없으면 OS 로케일로 재유도(과거 en 하드코딩 기본값 자동 교정).
+        if !s.state.language_set_by_user {
+            s.state.language = AppLanguage::system_default();
+        }
         if s.state.active.is_some() {
             s.display_state = CompanionStateKind::Idle;
         }
@@ -205,6 +209,7 @@ impl CompanionStore {
     }
     pub fn set_language(&mut self, lang: AppLanguage) {
         self.state.language = lang;
+        self.state.language_set_by_user = true; // 이후 로드에서 OS 로케일로 덮지 않음(사용자 선택 존중)
         self.save();
     }
     pub fn has_active(&self) -> bool {

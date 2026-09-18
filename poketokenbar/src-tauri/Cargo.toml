@@ -28,6 +28,7 @@ serde_json = "1"
 
 # --- 코어 로직(파서/게임규칙/API) 공통 ---
 dirs = "5"                # 홈 디렉토리 해석 (~/.claude 등) — macOS homeDirectoryForCurrentUser 대체
+sys-locale = "0.3"        # OS 로케일 감지(신규 설치 기본 언어 ko/ja/en) — 크로스플랫폼
 walkdir = "2"             # projects/**/*.jsonl 재귀 탐색
 chrono = { version = "0.4", features = ["serde"] }  # ISO8601 타임스탬프
 flate2 = "1"              # 사용량 캐시 스냅샷 zlib 압축

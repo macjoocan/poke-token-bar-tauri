@@ -309,9 +309,16 @@ impl AppLanguage {
         }
         by_lang.get("en").cloned()
     }
-    /// 신규 설치 기본 언어. TODO(M2): 실제 시스템 로케일 감지. 현재는 영어 폴백.
+    /// 신규 설치 기본 언어 — OS 로케일 감지(ko/ja 매칭, 그 외 en). 글로벌 출시라 한국어 강제 금지.
     pub fn system_default() -> AppLanguage {
-        AppLanguage::En
+        let loc = sys_locale::get_locale().unwrap_or_default().to_lowercase();
+        if loc.starts_with("ko") {
+            AppLanguage::Ko
+        } else if loc.starts_with("ja") {
+            AppLanguage::Ja
+        } else {
+            AppLanguage::En
+        }
     }
 }
 
@@ -548,6 +555,10 @@ pub struct CompanionState {
     /// 몬스터볼 포획 성공 누계(통계 — 중복 종 재포획도 셈).
     #[serde(default)]
     pub caught_count: i64,
+    /// 사용자가 설정에서 언어를 직접 골랐는가. false 면 로드 시 OS 로케일로 재유도한다
+    /// (과거 기본값이 영어로 하드코딩돼 저장된 `language:"en"` 을 한국어 로케일에서 자동 교정).
+    #[serde(default)]
+    pub language_set_by_user: bool,
 }
 
 /// 영속 모험 로그 한 줄(app-data JSON).
@@ -592,6 +603,7 @@ impl Default for CompanionState {
             adventure_log: Vec::new(),
             pending_battle: None,
             caught_count: 0,
+            language_set_by_user: false,
         }
     }
 }
