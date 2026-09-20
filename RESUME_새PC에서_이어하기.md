@@ -44,7 +44,8 @@ npm run tauri dev                             # 앱 실행(트레이 앱 — 클
 - 실데이터 스모크: `cargo run --manifest-path src-tauri/Cargo.toml --example smoke`
 - Claude 한도 프로브: `cargo run --manifest-path src-tauri/Cargo.toml --example probe_limits`
 
-## macOS 빌드 (코드는 준비 완료 — 맥에서 빌드만 하면 됨)
+## macOS 빌드 (2026-09-20 실빌드 검증 완료 — 코드 수정 0줄)
+> 실측 절차·패키징·트러블슈팅·미검증 항목은 [`macOS_빌드_가이드.md`](macOS_빌드_가이드.md) 로 분리했다. 아래는 배경 설명.
 Tauri 크로스플랫폼 + 경로를 `dirs`(home/data_dir)로 짜서 **로그 파싱·컴패니언·Codex 한도·단가 등 대부분 그대로** 돈다.
 맥 고유 처리는 코드에 반영해 둠:
 - **Claude OAuth 토큰**: 맥은 키체인에 저장 → `oauth_limits.rs` 에 `#[cfg(target_os="macos")]` 키체인 폴백 추가
