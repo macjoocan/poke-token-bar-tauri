@@ -24,8 +24,9 @@ npm run tauri build -- --no-bundle    # 포터블 exe: src-tauri/target/release/
 # 또는 npm run tauri dev  (개발 실행)
 ```
 - ⚠️ **포터블 exe 는 반드시 `tauri build`** 로. `cargo build` 로 만든 exe 는 프런트를 임베드하지 않아 "연결 거부"가 뜬다.
-- **macOS**: 크로스플랫폼이라 대부분 그대로 빌드됨(맥에서 `npm run tauri build`). Claude 토큰 키체인 폴백 반영 완료.
-  자세한 절차는 [`RESUME_새PC에서_이어하기.md`](RESUME_새PC에서_이어하기.md) 참고.
+- **macOS**: **코드 수정 없이 빌드 검증 완료(2026-09-20, Apple Silicon)** — `npm run tauri build -- --bundles app,dmg`.
+  코어 테스트 113개 통과, 로그 파싱 실동작 확인. 사전 준비·ad-hoc 서명·dmg 패키징·미검증 항목은
+  [`macOS_빌드_가이드.md`](macOS_빌드_가이드.md) 참고.
 
 ## 테스트
 ```bash
@@ -35,6 +36,7 @@ cargo test --manifest-path poketokenbar/src-tauri/Cargo.toml --lib
 
 ## 문서
 - [`PROGRESS.md`](PROGRESS.md) — 진행 현황 · [`RESUME_새PC에서_이어하기.md`](RESUME_새PC에서_이어하기.md) — 재개/빌드 가이드
+- [`macOS_빌드_가이드.md`](macOS_빌드_가이드.md) — 맥 빌드·패키징 실측 기록
 - [`PokeTokenBar_Windows_Tauri_포팅계획서.md`](PokeTokenBar_Windows_Tauri_포팅계획서.md) — 포팅 계획
 - [`단가_보정_작업지시.md`](단가_보정_작업지시.md) — 단가 보정 작업 내역
 
