@@ -24,8 +24,9 @@ npm run tauri build -- --no-bundle    # 포터블 exe: src-tauri/target/release/
 # 또는 npm run tauri dev  (개발 실행)
 ```
 - ⚠️ **포터블 exe 는 반드시 `tauri build`** 로. `cargo build` 로 만든 exe 는 프런트를 임베드하지 않아 "연결 거부"가 뜬다.
-- **macOS**: **코드 수정 없이 빌드 검증 완료(2026-09-20, Apple Silicon)** — `npm run tauri build -- --bundles app,dmg`.
-  코어 테스트 113개 통과, 로그 파싱 실동작 확인. 사전 준비·ad-hoc 서명·dmg 패키징·미검증 항목은
+- **macOS**: **코드 수정 없이 빌드 검증 완료(2026-09-20)** — Intel + Apple Silicon **유니버설**.
+  `rustup target add x86_64-apple-darwin` 후 `npm run tauri build -- --target universal-apple-darwin --bundles app,dmg`.
+  코어 테스트 arm64·x86_64 각각 113개 통과. 사전 준비·ad-hoc 서명·dmg 패키징·미검증 항목은
   [`macOS_빌드_가이드.md`](macOS_빌드_가이드.md) 참고.
 
 ## 테스트

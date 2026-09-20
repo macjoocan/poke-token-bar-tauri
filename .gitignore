@@ -23,3 +23,6 @@ Thumbs.db
 
 # 프런트/러스트 빌드물은 poketokenbar/.gitignore, src-tauri/.gitignore 가 처리
 # (node_modules, dist, target)
+
+# 릴리스 노트 임시 파일
+.release-notes-*.md
